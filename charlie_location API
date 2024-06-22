@@ -1,3 +1,4 @@
+# pip install requests for this to work
 
 import requests
 
@@ -8,7 +9,7 @@ def get_location(lon, lat):
     # Parameters
     params = {
         'location': f'{lat},{lon}',
-        'token': 'YOUR_API_KEY',  # Replace with your OneMap API key
+        'token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMWZiYTEyZTgxOGNhMzFiM2I0N2ZjNmIyMzIyZThhZCIsImlzcyI6Imh0dHA6Ly9pbnRlcm5hbC1hbGItb20tcHJkZXppdC1pdC0xMjIzNjk4OTkyLmFwLXNvdXRoZWFzdC0xLmVsYi5hbWF6b25hd3MuY29tL2FwaS92Mi91c2VyL3Bhc3N3b3JkIiwiaWF0IjoxNzE5MDM3MzkwLCJleHAiOjE3MTkyOTY1OTAsIm5iZiI6MTcxOTAzNzM5MCwianRpIjoiTllqbjNXR0ZwTmowQXhaciIsInVzZXJfaWQiOjM5MTUsImZvcmV2ZXIiOmZhbHNlfQ.He9KQN5WgmVpob1YIn-2eF16mzkfKQYNmsZ39_qC1JU',  # Replace with your OneMap API key
         'buffer': 50,  # Buffer in meters, adjust as needed
         'addressType': 'All',  # Type of address
         'otherFeatures': 'Y'  # Include other features

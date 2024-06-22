@@ -5,11 +5,6 @@ from model import transform_and_store
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    data = {"message": "hellooooo"}
-    return jsonify(data)
-
 @app.route('/api/traffic_data', methods=['GET'])
 def get_traffic_data():
     expressway = request.args.get('expressway')

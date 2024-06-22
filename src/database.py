@@ -11,9 +11,11 @@ class TrafficData(Base):
     __tablename__ = 'traffic_data'
     id = Column(Integer, primary_key=True, index=True)
     camera_id = Column(String)
+    camera_description = Column(String)
     timestamp = Column(DateTime)
     expressway = Column(String, index=True)
     image_url = Column(String)
+    annotated_image_url = Column(String)
     number_of_cars = Column(Integer)
     description = Column(String)
 

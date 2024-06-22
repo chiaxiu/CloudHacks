@@ -12,9 +12,14 @@ const TrafficCamera = ({ data }) => {
     <div className='col-md-6 mb-4'>
       <div className='card'>
         <img
-          src={showAnnotated ? data.annotated_image_url : data.image_url}
-          className='card-img-top'
+          src={data.image_url}
+          style={{ display: showAnnotated ? 'none' : 'block', width: '100%' }}
           alt='Camera View'
+        />
+        <img
+          src={`data:image/jpeg;base64,${data.annotated_image_url}`}
+          style={{ display: showAnnotated ? 'block' : 'none', width: '100%' }}
+          alt='Annotated View'
         />
         <div className='card-body'>
           <h5 className='card-title'>{data.camera_description}</h5>
@@ -24,13 +29,8 @@ const TrafficCamera = ({ data }) => {
             className='btn btn-secondary mt-2'
             onClick={toggleAnnotatedImage}
           >
-            Toggle Annotated Image
+            {showAnnotated ? 'Show Original Image' : 'Show Annotated Image'}
           </button>
-          {showAnnotated && (
-            <div className='mt-3'>
-              <img src={data.annotated_image_url} alt='Annotated View' />
-            </div>
-          )}
         </div>
       </div>
     </div>

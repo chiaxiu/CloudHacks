@@ -1,68 +1,30 @@
-.loader {
-  width: 50px;
-  height: 165px;
+.traffic-data-container {
   position: relative;
-}
-.loader::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 0;
-  transform: translate(-50%, 0);
-  width: 16px;
-  height: 16px;
-  background: #ff3d00;
-  border-radius: 50%;
-  animation: bounce 2s linear infinite;
-}
-.loader::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  height: 48px;
-  width: 48px;
-  background: #fff;
-  border-radius: 4px;
-  animation: rotate 2s linear infinite;
+  min-height: 165px; /* Ensure a minimum height for the loader */
 }
 
-@keyframes bounce {
-  0%,
-  50%,
-  100% {
-    transform: translate(-50%, 0px);
-    height: 20px;
-  }
-  20% {
-    transform: translate(-25%, 85px);
-    height: 28px;
-  }
-  25% {
-    transform: translate(-25%, 110px);
-    height: 12px;
-  }
-  70% {
-    transform: translate(-75%, 85px);
-    height: 28px;
-  }
-  75% {
-    transform: translate(-75%, 108px);
-    height: 12px;
-  }
+.loader-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
-@keyframes rotate {
-  0%,
-  50%,
-  100% {
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: #ff3d00;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
     transform: rotate(0deg);
   }
-  25% {
-    transform: rotate(90deg);
-  }
-  75% {
-    transform: rotate(-90deg);
+  100% {
+    transform: rotate(360deg);
   }
 }

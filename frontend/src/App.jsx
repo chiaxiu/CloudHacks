@@ -11,6 +11,7 @@ const App = () => {
 
   const fetchData = async () => {
     setIsLoading(true);
+    setTrafficData(null);
     try {
       const response = await trafficService.fetchTrafficData({
         selectedExpressway
@@ -36,17 +37,23 @@ const App = () => {
       <button className='btn btn-primary mt-3' onClick={fetchData}>
         Fetch Traffic Data
       </button>
-      {isLoading && <span className='loader' />}
-      {trafficData && (
-        <div className='mt-4'>
-          <h3>Expressway: {selectedExpressway}</h3>
-          <div className='row'>
-            {trafficData.map((data) => (
-              <TrafficCamera key={data.camera_id} data={data} />
-            ))}
+      <div className='traffic-data-container'>
+        {isLoading && (
+          <div className='loader-container'>
+            <span className='loader' />
           </div>
-        </div>
-      )}
+        )}
+        {!isLoading && trafficData && (
+          <div className='mt-4'>
+            <h3>Expressway: {selectedExpressway}</h3>
+            <div className='row'>
+              {trafficData.map((data) => (
+                <TrafficCamera key={data.camera_id} data={data} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

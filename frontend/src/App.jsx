@@ -1,21 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import trafficService from './services/trafficService';
 import ExpresswaySelector from './components/ExpresswaySelector';
+import TrafficCamera from './components/TrafficCamera';
+import './App.css';
 
 const App = () => {
-  const [data, setData] = useState(null);
+  const [trafficData, setTrafficData] = useState(null);
   const [selectedExpressway, setSelectedExpressway] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await trafficService.getTrafficData();
-      setData(response.message);
-
-      const test = await trafficService.fetchTrafficData(selectedExpressway);
-      console.log(test);
-    };
-    fetchData();
-  }, []);
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const response = await trafficService.fetchTrafficData({
+        selectedExpressway
+      });
+      setTrafficData(response);
+    } catch (error) {
+      console.error('Error fetching data: ' + error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleExpresswayChange = (expressway) => {
     setSelectedExpressway(expressway);
@@ -27,6 +33,20 @@ const App = () => {
         Traffic Congestion Information
       </h1>
       <ExpresswaySelector onSelectExpressway={handleExpresswayChange} />
+      <button className='btn btn-primary mt-3' onClick={fetchData}>
+        Fetch Traffic Data
+      </button>
+      {isLoading && <span className='loader' />}
+      {trafficData && (
+        <div className='mt-4'>
+          <h3>Expressway: {selectedExpressway}</h3>
+          <div className='row'>
+            {trafficData.map((data) => (
+              <TrafficCamera key={data.camera_id} data={data} />
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

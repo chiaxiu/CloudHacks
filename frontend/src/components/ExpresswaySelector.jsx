@@ -28,8 +28,16 @@ const ExpresswaySelector = ({ onSelectExpressway }) => {
         <option value='ECP'>East Coast Parkway (ECP)</option>
         <option value='KPE'>Kallange-Paya Lebar Expressway (KPE)</option>
         <option value='KJE'>Kranji Expressway (KJE)</option>
+        <option value='Loyang Ave / Tanah Merah Coast Road'>
+          Loyang Ave / Tanah Merah Coast Road
+        </option>
         <option value='MCE'>Marina Coastal Expressway (MCE)</option>
         <option value='PIE'>Pan Island Expressway (PIE)</option>
+        <option value='Sentosa Gateway'>Sentosa Gateway</option>
+        <option value='SLE'>Seletar Expressway</option>
+        <option value='TPE'>Tampines Expressway (TPE)</option>
+        <option value='Tuas Checkpoint'>Tuas Checkpoint</option>
+        <option value='Woodlands Checkpoint'>Woodlands Checkpoint</option>
       </select>
     </div>
   );

@@ -1,5 +1,4 @@
 import requests
-# import pandas as pd
 from transformers import pipeline
 from PIL import Image, ImageDraw
 from io import BytesIO
@@ -36,13 +35,13 @@ def draw_boxes_on_image(image, predictions):
     return image
 
 def congestion_meter(number_of_cars):
-    if number_of_cars >= 20:
+    if number_of_cars >= 80:
         return 'congested'
-    if number_of_cars >= 15:
+    if number_of_cars >= 60:
         return 'slightly congested'
-    if number_of_cars >= 10:
+    if number_of_cars >= 40:
         return 'normal'
-    if number_of_cars >= 5:
+    if number_of_cars >= 20:
         return 'better than normal'
     else:
         return 'basically no cars'
@@ -50,7 +49,7 @@ def congestion_meter(number_of_cars):
 def detect_and_transform(camera):
     camera_id = camera['camera_id']
     timestamp = datetime.fromisoformat(camera['timestamp'])
-    expressway, camera_description = updated_expressway_mapping.get(camera_id, ('Unknown', 'Unknown')) ## to be changed later
+    expressway, camera_description = updated_expressway_mapping.get(camera_id, ('Unknown', 'Unknown'))
     image_url = camera['image']
 
     response = requests.get(image_url)
@@ -60,9 +59,8 @@ def detect_and_transform(camera):
     annotated_image = draw_boxes_on_image(image, predictions)
 
     annotated_image_base64 = encode_image_base64(annotated_image)
-    print('saved')
 
-    number_of_cars = sum(1 for item in predictions if item['label'] == 'car' and item['score'] > 0.12)
+    number_of_cars = sum(1 for item in predictions if item['label'] == 'car' and item['score'] > 0.15)
     description = congestion_meter(number_of_cars)
 
     return {
@@ -85,9 +83,6 @@ def transform_and_store(expressway_name):
     with ThreadPoolExecutor(max_workers=5) as executor:
         results = list(executor.map(detect_and_transform, filtered_cameras))
 
-    # df = pd.DataFrame(results)
-    # print(df)
-
     db = SessionLocal()
     try:
         for row in results:
@@ -98,5 +93,3 @@ def transform_and_store(expressway_name):
         db.close()
 
     return results
-
-# result = transform_and_store('BKE')

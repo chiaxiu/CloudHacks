@@ -8,6 +8,8 @@ const TrafficCamera = ({ data }) => {
     setShowAnnotated(!showAnnotated);
   };
 
+  const formattedTimestamp = new Date(data.timestamp).toLocaleString();
+
   return (
     <div className='col-md-6 mb-4'>
       <div className='card'>
@@ -23,8 +25,9 @@ const TrafficCamera = ({ data }) => {
         />
         <div className='card-body'>
           <h5 className='card-title'>{data.camera_description}</h5>
-          <p className='card-text'>Timestamp: {data.timestamp}</p>
+          <p className='card-text'>Time: {formattedTimestamp}</p>
           <p className='card-text'>Congestion: {data.description}</p>
+          <p className='num_car'> Number Of Cars: {data.number_of_cars}</p>
           <button
             className='btn btn-secondary mt-2'
             onClick={toggleAnnotatedImage}

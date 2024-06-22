@@ -45,7 +45,7 @@ const App = () => {
         )}
         {!isLoading && trafficData && (
           <div className='mt-4'>
-            <h3>Expressway: {selectedExpressway}</h3>
+            <h3 style={{ marginBottom: '20px' }}>{selectedExpressway}</h3>
             <div className='row'>
               {trafficData.map((data) => (
                 <TrafficCamera key={data.camera_id} data={data} />

@@ -10,6 +10,9 @@ const App = () => {
     const fetchData = async () => {
       const response = await trafficService.getTrafficData();
       setData(response.message);
+
+      const test = await trafficService.fetchTrafficData(selectedExpressway);
+      console.log(test);
     };
     fetchData();
   }, []);
@@ -19,8 +22,10 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Traffic Congestion Information</h1>
+    <div className='container my-5' style={{ maxWidth: '800px' }}>
+      <h1 className='text-center mb-4' style={{ color: '#343a40' }}>
+        Traffic Congestion Information
+      </h1>
       <ExpresswaySelector onSelectExpressway={handleExpresswayChange} />
     </div>
   );

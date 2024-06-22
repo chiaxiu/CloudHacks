@@ -9,6 +9,16 @@ const getTrafficData = async () => {
   return data;
 };
 
+const fetchTrafficData = async ({ selectedExpressway }) => {
+  const { data } = await axios.get(`${apiBaseUrl}/traffic_data`, {
+    params: { expressway: 'PIE' }
+  });
+
+  console.log(data);
+  return data;
+};
+
 export default {
-  getTrafficData
+  getTrafficData,
+  fetchTrafficData
 };

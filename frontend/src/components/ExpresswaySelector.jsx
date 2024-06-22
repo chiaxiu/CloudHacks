@@ -11,9 +11,16 @@ const ExpresswaySelector = ({ onSelectExpressway }) => {
   };
 
   return (
-    <div>
-      <label>Select an Expressway: </label>
-      <select value={expressway} onChange={handleExpresswayChange}>
+    <div className='form-group'>
+      <label htmlFor='expressway-select' style={{ fontWeight: 'bold' }}>
+        Select an Expressway:
+      </label>
+      <select
+        id='expressway-select'
+        className='form-control'
+        value={expressway}
+        onChange={handleExpresswayChange}
+      >
         <option value=''>Select...</option>
         <option value='AYE'>Ayer Rajah Expressway (AYE)</option>
         <option value='BKE'>Bukit Timah Expressway (BKE)</option>

@@ -1,0 +1,47 @@
+
+import requests
+
+def get_location(lon, lat):
+    # OneMap Reverse Geocode API URL
+    url = 'https://developers.onemap.sg/commonapi/revgeocode'
+    
+    # Parameters
+    params = {
+        'location': f'{lat},{lon}',
+        'token': 'YOUR_API_KEY',  # Replace with your OneMap API key
+        'buffer': 50,  # Buffer in meters, adjust as needed
+        'addressType': 'All',  # Type of address
+        'otherFeatures': 'Y'  # Include other features
+    }
+    
+    # Make the API request
+    response = requests.get(url, params=params)
+    
+    # Check if the request was successful
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Check if there are any results
+        if data['GeocodeInfo']:
+            # Extract the relevant information
+            location_info = data['GeocodeInfo'][0]
+            road_name = location_info.get('ROAD', 'Unknown Road')
+            building_name = location_info.get('BUILDINGNAME', 'Unknown Building')
+            postal_code = location_info.get('POSTALCODE', 'Unknown Postal Code')
+            
+            return {
+                'road_name': road_name,
+                'building_name': building_name,
+                'postal_code': postal_code
+            }
+        else:
+            return {'error': 'No location information found.'}
+    else:
+        return {'error': 'Failed to connect to the API.'}
+
+# Example usage
+lon = 103.851959  # Longitude example
+lat = 1.290270  # Latitude example
+
+location = get_location(lon, lat)
+print(location)

@@ -1,6 +1,6 @@
 # Real-Time Traffic Congestion Detection
 
-This project uses Hugging Face AI zero-shot object detection to analyse real-time traffic images and count the number of cars, determining the congestion level of a particular expressway. The project is built for the CloudHacks Hackathon 2024 and utilises a Flask Python backend and a React + Vite frontend. The project also leverages `concurrent.futures' ThreadPoolExecutor` for asynchronous requests to the Hugging Face API.
+This project uses Hugging Face AI zero-shot object detection to analyse real-time traffic images, from `Data.gov.sg`, and count the number of cars, determining the congestion level of a particular expressway. The project is built for the CloudHacks Hackathon 2024 and utilises a Flask Python backend and a React + Vite frontend. The project also leverages `ThreadPoolExecutor` for asynchronous requests to the Hugging Face API.
 
 ## Table of Contents
 
@@ -9,7 +9,6 @@ This project uses Hugging Face AI zero-shot object detection to analyse real-tim
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [License](#license)
 
 ## Project Overview
 
@@ -20,7 +19,7 @@ The objective of this project is to provide real-time traffic congestion informa
 - **Backend**: Flask, Python
 - **Frontend**: React, Vite
 - **AI Model**: Hugging Face Zero-Shot Object Detection (supported by OWL-ViT (Vision Transformer for Open-World Localization))
-- **Concurrency**: `concurrent.futures' ThreadPoolExecutor`
+- **Concurrency**: `ThreadPoolExecutor`
 
 ## Features
 

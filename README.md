@@ -1,4 +1,4 @@
-# Real-Time Traffic Congestion Detection
+# Project Street Smart: Real-Time Traffic Congestion Detection
 
 This project uses Hugging Face AI zero-shot object detection to analyse real-time traffic images, from `Data.gov.sg`, and count the number of cars, determining the congestion level of a particular expressway. The project is built for the CloudHacks Hackathon 2024 and utilises a Flask Python backend and a React + Vite frontend. The project also leverages `ThreadPoolExecutor` for asynchronous requests to the Hugging Face API.
 

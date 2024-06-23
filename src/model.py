@@ -60,7 +60,7 @@ def detect_and_transform(camera):
 
     annotated_image_base64 = encode_image_base64(annotated_image)
 
-    number_of_cars = sum(1 for item in predictions if item['label'] == 'car' and item['score'] > 0.15)
+    number_of_cars = sum(1 for item in predictions if item['label'] == 'car' and item['score'] > 0.2)
     description = congestion_meter(number_of_cars)
 
     return {

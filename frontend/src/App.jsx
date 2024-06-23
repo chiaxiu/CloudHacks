@@ -16,6 +16,7 @@ const App = () => {
       const response = await trafficService.fetchTrafficData({
         selectedExpressway
       });
+      console.log(response);
       setTrafficData(response);
     } catch (error) {
       console.error('Error fetching data: ' + error);
@@ -28,13 +29,20 @@ const App = () => {
     setSelectedExpressway(expressway);
   };
 
+  let total_cars = 0;
+  if (trafficData) {
+    total_cars = trafficData
+      .map((data) => data.number_of_cars)
+      .reduce((a, b) => a + b);
+  }
+
   return (
     <div className='container my-5' style={{ maxWidth: '800px' }}>
-      <h1 className='text-center mb-4' style={{ color: '#007bff' }} >
+      <h1 className='text-center mb-4' style={{ color: '#007bff' }}>
         Street Smart
       </h1>
       <h3 className='text-center mb-4' style={{ color: '#007bff' }}>
-        Live Traffic Congestion Information 
+        Live Traffic Congestion Information
       </h3>
       <ExpresswaySelector onSelectExpressway={handleExpresswayChange} />
       <button className='btn btn-primary mt-3' onClick={fetchData}>
@@ -48,7 +56,9 @@ const App = () => {
         )}
         {!isLoading && trafficData && (
           <div className='mt-4'>
-            <h3 style={{ marginBottom: '20px' }}>{selectedExpressway}</h3>
+            <h3 style={{ marginBottom: '20px' }}>
+              {selectedExpressway} <i>(Total Cars: {total_cars})</i>
+            </h3>
             <div className='row'>
               {trafficData.map((data) => (
                 <TrafficCamera key={data.camera_id} data={data} />

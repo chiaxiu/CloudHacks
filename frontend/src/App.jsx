@@ -30,14 +30,17 @@ const App = () => {
 
   return (
     <div className='container my-5' style={{ maxWidth: '800px' }}>
-      <h1 className='text-center mb-4' style={{ color: '#343a40' }}>
-        Traffic Congestion Information
+      <h1 className='text-center mb-4' style={{ color: '#007bff' }} >
+        Street Smart
       </h1>
+      <h3 className='text-center mb-4' style={{ color: '#007bff' }}>
+        Live Traffic Congestion Information 
+      </h3>
       <ExpresswaySelector onSelectExpressway={handleExpresswayChange} />
       <button className='btn btn-primary mt-3' onClick={fetchData}>
         Fetch Traffic Data
       </button>
-      <div className='traffic-data-container'>
+      <div className='traffic-data-container mt-4'>
         {isLoading && (
           <div className='loader-container'>
             <span className='loader' />

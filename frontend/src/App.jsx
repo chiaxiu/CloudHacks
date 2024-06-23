@@ -16,7 +16,6 @@ const App = () => {
       const response = await trafficService.fetchTrafficData({
         selectedExpressway
       });
-      console.log(response);
       setTrafficData(response);
     } catch (error) {
       console.error('Error fetching data: ' + error);
